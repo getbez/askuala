@@ -1,0 +1,1 @@
+json.array! @concept_resources, partial: 'concept_resources/concept_resource', as: :concept_resource

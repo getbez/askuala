@@ -1,0 +1,42 @@
+<%= form_for(learned_concept) do |f| %>
+  <% if learned_concept.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(learned_concept.errors.count, "error") %> prohibited this learned_concept from being saved:</h2>
+
+      <ul>
+      <% learned_concept.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :concept_id %>
+    <%= f.number_field :concept_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :resource_id %>
+    <%= f.number_field :resource_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_time %>
+    <%= f.datetime_select :start_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_time %>
+    <%= f.datetime_select :end_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :completed %>
+    <%= f.check_box :completed %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

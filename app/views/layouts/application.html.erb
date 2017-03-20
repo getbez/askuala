@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "Askuala Learning Platform" %> </title>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body class="nav-md" <% if not user_signed_in?  %> style="background:#F7F7F7;" <% end %>  >
+<div class="container body">
+  <% flash.each do |key, value| %>
+      <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= render "partials/sidenav" %>
+    <%= render "partials/topnav" %>
+  <% end %>
+  <div style="min-height: 860px;" class="right_col" role="main">
+            <!-- Main view  -->
+            <%= yield %>
+  </div>
+  <%= render "partials/footer" %>
+  <%= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => true %>
+
+</body>
+</html>

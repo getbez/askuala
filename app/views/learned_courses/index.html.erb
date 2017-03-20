@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Learned Courses</h1>
+
+<table class="table table-striped ">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Student</th>
+      <th>Completion level</th>
+      <th>Current concept</th>
+      <th>Current grade</th>
+      <th>Starting level</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @learned_courses.each do |learned_course| %>
+      <tr>
+        <td><%=link_to Course.find(learned_course.course_id).title, learned_course_path(learned_course)%></td>
+        <td><%= Student.find(learned_course.student_user_id).name %></td>
+        <td><%= learned_course.completion_level %></td>
+        <td><%= learned_course.current_concept %></td>
+        <td><%= learned_course.current_grade %></td>
+        <td><%= learned_course.starting_level %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

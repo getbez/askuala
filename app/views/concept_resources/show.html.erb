@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @concept_resource.content %>
+</p>
+
+<p>
+  <strong>File name:</strong>
+  <%= @concept_resource.file_name %>
+</p>
+
+<p>
+  <strong>Format:</strong>
+  <%= @concept_resource.format %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @concept_resource.level %>
+</p>
+
+<p>
+  <strong>Mime type:</strong>
+  <%= @concept_resource.content_type %>
+</p>
+
+<p>
+  <strong>Presentation mode:</strong>
+  <%= @concept_resource.presentation_mode %>
+</p>
+
+<p>
+  <strong>Resource type:</strong>
+  <%= @concept_resource.resource_type %>
+</p>
+
+<p>
+  <strong>Concept:</strong>
+  <%= @concept_resource.concept_id %>
+</p>
+
+<%= link_to 'Edit', edit_concept_resource_path(@concept_resource) %> |
+<%= link_to 'Back', concept_concept_resources_path(@concept_resource.concept_id) %>

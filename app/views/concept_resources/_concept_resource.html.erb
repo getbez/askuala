@@ -1,0 +1,13 @@
+      <tr>
+        <td><%= concept_resource.file_name %></td>
+      
+        <td><%= concept_resource.level %></td>
+        <td><%= concept_resource.content_type %></td>
+        <td><%= concept_resource.presentation_mode %></td>
+        <td><%= concept_resource.resource_type %></td>
+        <td><%= concept_resource.concept_id %></td>
+
+        <td><%= link_to 'Edit', edit_concept_resource_path(concept_resource) %> |
+          <%= link_to 'Destroy', concept_resource, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>

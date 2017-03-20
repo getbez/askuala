@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Concept Resources</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>File name</th>   
+      <th>Level</th>
+      <th>Mime type</th>
+      <th>Presentation mode</th>
+      <th>Resource type</th>
+      <th>Concept</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @concept_resources.each do |concept_resource| %>
+      <tr>
+        <td><%= concept_resource.file_name %></td>      
+        <td><%= concept_resource.level %></td>
+        <td><%= concept_resource.content_type %></td>
+        <td><%= concept_resource.presentation_mode %></td>
+        <td><%= concept_resource.resource_type %></td>
+        <td><%= concept_resource.concept_id %></td>
+        <td><%= link_to 'Show', concept_resource %></td>
+        <td><%= link_to 'Edit', edit_concept_resource_path(concept_resource) %></td>
+        <td><%= link_to 'Destroy', concept_resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Concept resource', new_concept_concept_resource_path(0) %>

@@ -1,0 +1,1 @@
+json.partial! "concept_resources/concept_resource", concept_resource: @concept_resource

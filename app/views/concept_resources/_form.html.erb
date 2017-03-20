@@ -1,0 +1,53 @@
+<div class="wrapper wrapper-content">
+  <div class="ibox float-e-margins">
+    <div class="ibox-content">
+      <%= form_for @concept_resource do |f| %>
+  <% if @concept_resource.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@concept_resource.errors.count, "error") %> prohibited this concept_resource from being saved:</h2>
+
+      <ul>
+      <% @concept_resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_field :content %>
+  </div>
+  <div class="field">
+    <%= f.label :file_name %><br>
+    <%= f.text_field :file_name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :level %><br>
+    <%= f.text_field :level %>
+  </div>
+  <div class="field">
+    <%= f.label :content_type %><br>
+    <%= f.text_field :content_type %>
+  </div>
+  <div class="field">
+    <%= f.label :presentation_mode %><br>
+    <%= f.text_field :presentation_mode %>
+  </div>
+  <div class="field">
+    <%= f.label :resource_type %><br>
+    <%= f.number_field :resource_type %>
+  </div>
+  <div class="field">
+    <%= f.label :concept_id %><br>
+    <%= f.number_field :concept_id %>
+  </div>
+  <br> 
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-primary' %>
+  </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+
+<%= form_for @learned_concept, url:learned_concepts_path do |f| %>
+
+ <% if @learned_concept.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@learned_concept.errors.count, "error") %> occured:</h2>
+
+        <ul>
+            <% @concept.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+  <% end %>
+
+<div class="row hidden">
+    <%= f.number_field :learned_course_id %>
+  
+      <%= f.number_field :concept_id %>
+      <%= f.number_field :resource_id %>
+       <%= f.text_field :start_time %>
+       <%= f.text_field :end_time %>
+       <%= f.text_field :completed%>
+</div>
+  <div class="row">
+     
+      <% if ConceptResource.find(@learned_concept.resource_id).content_type == "video/mp4" %>
+        <%=  video_tag(ConceptResource.find(@learned_concept.resource_id).file_name,  size: "700x500",controls: true, autobuffer: true) %>
+      <% end  %>
+      <% if ConceptResource.find(@learned_concept.resource_id).content_type == "application/pdf" %>
+    
+        <iframe src="/pdfjs/web/viewer.html?file=<%=ConceptResource.find(@learned_concept.resource_id).file_name%>" style="border: 0" width="50%" height="650" frameborder="0" scrolling="no"></iframe>
+
+      <% end %>
+      
+  </div>
+
+  <%=  f.submit 'Go to next concept', :class=>'btn btn-primary'%>
+
+<%end%>
+<%= link_to 'Back' %>
+

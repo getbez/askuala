@@ -1,0 +1,31 @@
+<div class="row">
+    <p id="notice"><%= notice %></p>
+
+    <p>
+        <strong>Level:</strong>
+        <%= @concept.level %>
+    </p>
+
+    <p>
+        <strong>Title:</strong>
+        <%= @concept.title %>
+    </p>
+
+    <p>
+        <strong>Course:</strong>
+        <%= Course.find(@concept.course_id).title %>
+    </p>
+
+    <p>
+      <strong>Prerequisites</strong>
+      <ul>
+          <% @concept.prerequisites.each do |pq| %>
+            <li>(<%= Concept.find(pq.id).id %>) <%= Concept.find(pq.id). title%></li>
+          <% end %>
+       <ul>
+     </p>
+</div>
+
+
+<%= link_to 'Edit', edit_concept_path(@concept) %> 
+<%= link_to 'Back', course_concepts_path(@concept.course) %>

@@ -1,0 +1,32 @@
+    <p>
+      <strong>Allowed time gap:</strong>
+      <%= @course.allowed_time_gap %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @course.description %>
+    </p>
+
+    <p>
+      <strong>End date:</strong>
+      <%= @course.end_date %>
+    </p>
+
+    <p>
+      <strong>Passing grade:</strong>
+      <%= @course.passing_grade %>
+    </p>
+
+    <p>
+      <strong>Start date:</strong>
+      <%= @course.start_date %>
+    </p>
+
+    <p>
+      <strong>Title:</strong>
+      <%= @course.title %>
+    </p>
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>

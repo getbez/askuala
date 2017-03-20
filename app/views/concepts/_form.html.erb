@@ -1,0 +1,47 @@
+<div class="wrapper wrapper-content">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            <%= form_for @concept do |f| %>
+              <% if @concept.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@concept.errors.count, "error") %> prohibited this concept from being saved:</h2>
+
+                    <ul>
+                        <% @concept.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+              <% end %>
+
+              <div class="field">
+                  <%= f.label :level %><br>
+                  <%= f.number_field :level %>
+              </div>
+              <div class="field">
+                  <%= f.label :title %><br>
+                  <%= f.text_field :title %>
+              </div>
+              <div class="field">
+                  <%= f.label :course_id %><br>
+                  <%= f.text_field :course_id %>
+              </div>
+              <br>
+              <div class="field">
+                  <%= f.label "Prerequisites" %><br />
+                  <%= f.collection_check_boxes :prerequisite_ids,Concept.where.not(id: @concept.id), :id, :title do |con| %>
+                    <div class="collection-check-box">
+                        <%= con.check_box %>
+                        <%= con.label %>
+                    </div>
+                  <% end %>
+              </div>
+              <br>
+              <div class="actions">
+                  <%= f.submit :class => 'btn btn-primary' %>
+              </div>
+              <br>
+            <% end %>
+        </div>
+    </div>
+</div>

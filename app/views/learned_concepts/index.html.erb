@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Learned Concepts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Concept</th>
+      <th>Resource</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Completed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @learned_concepts.each do |learned_concept| %>
+      <tr>
+        <td><%= learned_concept.concept_id %></td>
+        <td><%= learned_concept.resource_id %></td>
+        <td><%= learned_concept.start_time %></td>
+        <td><%= learned_concept.end_time %></td>
+        <td><%= learned_concept.completed %></td>
+        <td><%= link_to 'Show', learned_concept %></td>
+        <td><%= link_to 'Edit', edit_learned_concept_path(learned_concept) %></td>
+        <td><%= link_to 'Destroy', learned_concept, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Learned Concept', new_learned_concept_path %>

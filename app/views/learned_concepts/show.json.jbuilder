@@ -1,0 +1,1 @@
+json.partial! "learned_concepts/learned_concept", learned_concept: @learned_concept

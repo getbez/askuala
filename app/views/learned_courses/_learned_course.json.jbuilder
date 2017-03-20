@@ -1,0 +1,2 @@
+json.extract! learned_course, :id, :completion_level, :current_concept, :current_grade, :starting_level, :course_id, :student_user_id, :created_at, :updated_at
+json.url learned_course_url(learned_course, format: :json)

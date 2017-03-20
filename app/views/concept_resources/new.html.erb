@@ -1,0 +1,51 @@
+<h1>New Concept Resource</h1>
+
+<div class="wrapper wrapper-content">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            <%= form_for @concept_resource , url:concept_concept_resources_path do |f| %>
+              <% if @concept_resource.errors.any? %>
+                <div id="error_explanation">
+                    <h2><%= pluralize(@concept_resource.errors.count, "error") %> prohibited this concept_resource from being saved:</h2>
+
+                    <ul>
+                        <% @concept_resource.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                </div>
+              <% end %>
+
+              <div class="field">
+                  <%= f.label :level %><br>
+                  <%= f.text_field :level %>
+              </div>
+
+              <div class="field">
+                  <%= f.label :presentation_mode %>
+                  <%= f.collection_select :presentation_mode, Preference.presentation_modes, :first, :first, {include_blank: true}, {class: 'form-control'} %>
+                </div>
+
+                <div class="field">
+                    <%= f.label :resource_type %>
+                    <%= f.collection_select :resource_type, Preference.resource_types, :first, :first, {include_blank: true}, {class: 'form-control'} %>
+                  </div>
+                  <div class="field">
+                      <%= f.label :concept_id %><br>
+                      <%= f.number_field :concept_id %>
+                  </div>
+                  <div class="field">
+                      <%= f.label :content %><br>
+                      <%= f.file_field :content %>
+                  </div>
+                  <br>
+                  <div class="actions">
+                      <%= f.submit :class => 'btn btn-primary' %>
+                  </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+
+    <%= link_to 'Back', concept_concept_resources_path %>

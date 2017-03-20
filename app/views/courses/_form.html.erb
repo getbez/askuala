@@ -1,0 +1,57 @@
+<div class="wrapper wrapper-content">
+  <div class="ibox float-e-margins">
+    <div class="ibox-content">
+      <%= form_for(course) do |f| %>
+        <% if course.errors.any? %>
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <%= pluralize(course.errors.count, "error") %> prohibited this course from being saved.
+            </div>
+
+            <div class="panel-body">
+              <ul>
+                <% course.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+          <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, :class => 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :description %>
+            <%= f.text_field :description, :class => 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :start_date %>
+            <%= f.datetime_select :start_date, :class => 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :end_date %>
+            <%= f.datetime_select :end_date, :class => 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :passing_grade %>
+            <%= f.text_field :passing_grade, :class => 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :allowed_time_gap %>
+            <%= f.text_field :allowed_time_gap, :class => 'form-control' %>
+          </div>
+            
+      <div class="actions">
+        <%= f.submit :class => 'btn btn-primary' %>
+      </div>
+  <% end %>
+
+    </div>
+  </div>
+</div>

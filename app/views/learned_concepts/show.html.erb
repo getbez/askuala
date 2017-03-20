@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Concept:</strong>
+  <%= @learned_concept.concept_id %>
+</p>
+
+<p>
+  <strong>Resource:</strong>
+  <%= @learned_concept.resource_id %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @learned_concept.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @learned_concept.end_time %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @learned_concept.completed %>
+</p>
+
+<%= link_to 'Edit', edit_learned_concept_path(@learned_concept) %> |
+<%= link_to 'Back', learned_concepts_path %>

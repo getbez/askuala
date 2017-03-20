@@ -1,0 +1,46 @@
+<h1>New Concept</h1>
+
+<%= form_for @concept, url:course_concepts_path do |f| %>
+  <% if @concept.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@concept.errors.count, "error") %> prohibited this concept from being saved:</h2>
+
+        <ul>
+            <% @concept.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+      <%= f.label :level %><br>
+      <%= f.number_field :level %>
+  </div>
+  <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+  </div>
+  <div class="field">
+      <%= f.fields_for @concept.course do |c| %>
+        <%= c.label :course_id %><br>
+        <%= c.text_field :title, :disabled=>true%>
+      <%end%>
+  </div>
+  <div class="field">
+      <%= f.label "Prerequisites" %><br />
+      <%= f.collection_check_boxes :prerequisite_ids, Concept.all, :id, :title do |con| %>
+        <div class="collection-check-box">
+            <%= con.check_box %>
+            <%= con.label %>
+        </div>
+      <% end %>
+  </div>
+  <br>
+  <div class="actions">
+      <br>
+      <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', :back %>

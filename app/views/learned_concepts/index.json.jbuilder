@@ -1,0 +1,1 @@
+json.array! @learned_concepts, partial: 'learned_concepts/learned_concept', as: :learned_concept

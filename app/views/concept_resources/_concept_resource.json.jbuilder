@@ -1,0 +1,2 @@
+json.extract! concept_resource, :id, :content, :file_name, :format, :level, :content_type, :presentation_mode, :resource_type, :concept_id, :created_at, :updated_at
+json.url concept_resource_url(concept_resource, format: :json)

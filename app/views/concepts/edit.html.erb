@@ -1,0 +1,40 @@
+<h1>Editing Concept</h1>
+
+<%= render 'form' %>
+
+<div class="x_panel">
+    <div class="x_title">
+        <div class="col-md-8">
+         <h2>Resources for Concept</h2>
+        </div>
+        <div class="col-md-4">
+           <%= link_to 'Add New Resource', new_concept_concept_resource_path(@concept),:class=>'btn btn-primary' %>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+   
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>File name</th>
+                    <th>Format</th>
+                    <th>Level</th>
+                    <th>Mime type</th>
+                    <th>Presentation mode</th>
+                    <th>Resource type</th>
+                    <th>Concept</th>
+                    <th colspan="3">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%= render @concept.concept_resources, concept_resources:@concept.concept_resources %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<%= link_to 'Show', @concept %> |
+<%= link_to 'Back', course_concepts_path(@concept.course) %>
