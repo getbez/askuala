@@ -6,7 +6,7 @@ class CreateLearnedCourses < ActiveRecord::Migration
       t.float  :current_grade
       t.string :starting_level
       t.integer :course_id
-      t.integer :student_user_id
+      t.integer :student_id
     end
   end
 end

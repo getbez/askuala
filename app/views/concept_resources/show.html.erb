@@ -2,17 +2,12 @@
 
 <p>
   <strong>Content:</strong>
-  <%= @concept_resource.content %>
+  <%= link_to image_tag(@concept_resource.resource.url(:med)), @concept_resource.resource.url %>
 </p>
 
 <p>
   <strong>File name:</strong>
   <%= @concept_resource.file_name %>
-</p>
-
-<p>
-  <strong>Format:</strong>
-  <%= @concept_resource.format %>
 </p>
 
 <p>

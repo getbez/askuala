@@ -1,7 +1,7 @@
 <div class="row">
     <div class="x_panel tile">
         <div class="x_title">
-            <h2>Course Detail</h2>
+            <h2> <%= Course.find(@learned_course.course_id).title %></h2>
             <div class="clearfix"></div>
         </div>
         <p id="notice"><%= notice %></p>
@@ -26,7 +26,7 @@
 
         <p>
             <strong>Current concept:</strong>
-            <%= Concept.find(@learned_course.current_concept).title %>
+            <%= @learned_course.current_concept ? Concept.find(@learned_course.current_concept).title : 'None' %>
         </p>
 
         <p>
@@ -37,16 +37,6 @@
         <p>
             <strong>Starting level:</strong>
             <%= @learned_course.starting_level %>
-        </p>
-
-        <p>
-            <strong>Course:</strong>
-            <%= Course.find(@learned_course.course_id).title %>
-        </p>
-
-        <p>
-            <strong>Student name:</strong>
-            <%= Student.find(@learned_course.student_user_id).name %>
         </p>
     </div>
 </div>

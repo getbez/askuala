@@ -5,8 +5,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>File name</th>   
-      <th>Level</th>
+      <th>File name</th>
       <th>Mime type</th>
       <th>Presentation mode</th>
       <th>Resource type</th>
@@ -18,9 +17,8 @@
   <tbody>
     <% @concept_resources.each do |concept_resource| %>
       <tr>
-        <td><%= concept_resource.file_name %></td>      
-        <td><%= concept_resource.level %></td>
-        <td><%= concept_resource.content_type %></td>
+        <td><%= concept_resource.resource_file_name %></td>
+        <td><%= concept_resource.resource_content_type %></td>
         <td><%= concept_resource.presentation_mode %></td>
         <td><%= concept_resource.resource_type %></td>
         <td><%= concept_resource.concept_id %></td>

@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: courses
+#
+#  id               :integer          not null, primary key
+#  allowed_time_gap :float            not null
+#  description      :string
+#  end_date         :datetime
+#  passing_grade    :float            not null
+#  start_date       :datetime
+#  title            :string
+#
+
 # create_table :courses, do |t|
 #   t.float    :allowed_time_gap, null: false
 #   t.string   :description

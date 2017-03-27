@@ -83,7 +83,7 @@ class ConceptsController < ApplicationController
       @learned_concept.concept_id=@concept.id
     
       @concept_resource = ConceptResource.new
-      @concept_resource=@concept.concept_resources.where(:presentation_mode=>0,:resource_type=>0).first
+      @concept_resource=@concept.concept_resources.where(:presentation_mode=>preference.presentation_mode,:resource_type=>preference.resource_type).first
       if(@concept_resource.nil?)
         @learned_course=LearnedCourse.find(@learned_concept.learned_course_id)
        redirect_to learned_course_path(@learned_course)

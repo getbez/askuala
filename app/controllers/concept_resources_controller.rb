@@ -10,9 +10,9 @@ class ConceptResourcesController < ApplicationController
   # GET /concept_resources/1
   # GET /concept_resources/1.json
   def show
-    send_data(@concept_resource.content,
-              content_type: @concept_resource.content_type,
-              file_name: @concept_resource.file_name,disposition: 'inline')
+    send_data(@concept_resource.resource,
+              content_type: @concept_resource.resource_content_type,
+              file_name: @concept_resource.resource_file_name,disposition: 'inline')
   end
 
   # GET /concept_resources/new
@@ -28,6 +28,7 @@ class ConceptResourcesController < ApplicationController
   # POST /concept_resources
   # POST /concept_resources.json
   def create
+    debugger
     @concept_resource = ConceptResource.new(concept_resource_params)
     @concept_resource.concept_id = params[:concept_id]
     respond_to do |format|
@@ -60,7 +61,7 @@ class ConceptResourcesController < ApplicationController
   def destroy
     @concept_resource.destroy
     respond_to do |format|
-      format.html { redirect_to concept_resources_url, notice: 'Concept resource was successfully destroyed.' }
+      format.html { redirect_to concept_concept_resources_path, notice: 'Concept resource was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,6 +74,6 @@ class ConceptResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def concept_resource_params
-      params.require(:concept_resource).permit(:content, :file_name, :format, :level, :content_type, :presentation_mode, :resource_type, :concept_id)
+      params.require(:concept_resource).permit(:resource,:presentation_mode, :resource_type, :concept_id)
     end
 end

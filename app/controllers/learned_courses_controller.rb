@@ -7,7 +7,7 @@ class LearnedCoursesController < ApplicationController
   # GET /learned_courses
   # GET /learned_courses.json
   def index
-    @learned_courses = LearnedCourse.where(student_user_id: current_user.id )
+    @learned_courses = LearnedCourse.where(student_id: current_user.id )
   end
 
   # GET /learned_courses/1
@@ -103,6 +103,6 @@ class LearnedCoursesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def learned_course_params
-    params.require(:learned_course).permit(:completion_level, :current_concept, :current_grade, :starting_level, :course_id, :student_user_id)
+    params.require(:learned_course).permit(:completion_level, :current_concept, :current_grade, :starting_level, :course_id, :student_id)
   end
 end

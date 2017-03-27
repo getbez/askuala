@@ -1,7 +1,7 @@
 <div class="wrapper wrapper-content">
   <div class="ibox float-e-margins">
     <div class="ibox-content">
-      <%= form_for @concept_resource do |f| %>
+      <%= form_for @concept_resource, html: { multipart: true } do |f| %>
   <% if @concept_resource.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@concept_resource.errors.count, "error") %> prohibited this concept_resource from being saved:</h2>
@@ -15,22 +15,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_field :content %>
+    <%= f.label :resource %><br>
+    <%= link_to image_tag(@concept_resource.resource.url(:med)), @concept_resource.resource.url %>
   </div>
-  <div class="field">
-    <%= f.label :file_name %><br>
-    <%= f.text_field :file_name %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :level %><br>
-    <%= f.text_field :level %>
-  </div>
-  <div class="field">
-    <%= f.label :content_type %><br>
-    <%= f.text_field :content_type %>
-  </div>
+
   <div class="field">
     <%= f.label :presentation_mode %><br>
     <%= f.text_field :presentation_mode %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161223111320) do
+ActiveRecord::Schema.define(version: 20170326124435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,13 +39,13 @@ ActiveRecord::Schema.define(version: 20161223111320) do
   end
 
   create_table "concept_resources", force: :cascade do |t|
-    t.binary  "content"
-    t.string  "content_type"
-    t.string  "file_name"
-    t.string  "level"
-    t.integer "presentation_mode"
-    t.integer "resource_type"
-    t.integer "concept_id"
+    t.integer  "presentation_mode"
+    t.integer  "resource_type"
+    t.integer  "concept_id"
+    t.string   "resource_file_name"
+    t.string   "resource_content_type"
+    t.integer  "resource_file_size"
+    t.datetime "resource_updated_at"
   end
 
   create_table "concepts", force: :cascade do |t|
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20161223111320) do
     t.float   "current_grade"
     t.string  "starting_level"
     t.integer "course_id"
-    t.integer "student_user_id"
+    t.integer "student_id"
   end
 
   create_table "learner_preferences", force: :cascade do |t|

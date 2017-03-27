@@ -20,4 +20,4 @@ class AvailableConcept < ActiveRecord::Base
 
 
 
-end```
+end

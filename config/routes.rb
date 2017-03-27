@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'plainpage#index'
+   root 'courses#index'
    put 'courses/:id/register', to: 'courses#register'
    get '/learned_courses/:lc_id/concepts/:id/learn', to: 'concepts#learn'
    

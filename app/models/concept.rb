@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: concepts
+#
+#  id        :integer          not null, primary key
+#  level     :integer          not null
+#  title     :string
+#  course_id :integer
+#
+
 # create_table :concepts do |t|
 #   t.integer  :level , null: false
 #   t.string   :title

@@ -64,9 +64,9 @@ class CoursesController < ApplicationController
   def register
     @course=Course.find(params[:id])
 
-    if(LearnedCourse.where(course_id: @course.id, student_user_id: current_user.id ).empty?)
+    if(LearnedCourse.where(course_id: @course.id, student_id: current_user.id ).empty?)
       @learned_course = LearnedCourse.create do |lc|
-        lc.student_user_id = current_user.id
+        lc.student_id = current_user.id
         lc.course_id = @course.id
         lc.completion_level = 0
       end

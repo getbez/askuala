@@ -29,8 +29,15 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "mediaelement_rails"
 
+gem "tzinfo-data"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', platforms: :ruby
+
+gem 'paperclip'
+
+gem 'paperclip-av-transcoder'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
