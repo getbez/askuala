@@ -41,6 +41,6 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
 
-  Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin; C:\Program Files\ImageMagick-7.0.5-Q16; C:\Program Files\gs\gs9.21\bin'
+  Paperclip.options[:command_path] =  Gem.win_platform? ? 'C:\Program Files (x86)\GnuWin32\bin; C:\Program Files\ImageMagick-7.0.5-Q16; C:\Program Files\gs\gs9.21\bin' : '/usr/bin'
   Paperclip.options[:swallow_std_err] = false
 end

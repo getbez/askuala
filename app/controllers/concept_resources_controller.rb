@@ -28,7 +28,7 @@ class ConceptResourcesController < ApplicationController
   # POST /concept_resources
   # POST /concept_resources.json
   def create
-    debugger
+   
     @concept_resource = ConceptResource.new(concept_resource_params)
     @concept_resource.concept_id = params[:concept_id]
     respond_to do |format|
