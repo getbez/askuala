@@ -23,12 +23,15 @@
        <%= f.text_field :completed%>
 </div>
   <div class="row">
-      <% if ConceptResource.find(@learned_concept.resource_id).resource_content_type == "video/mp4" %>
-        <%=  video_tag("#{ConceptResource.find(@learned_concept.resource_id).resource.url}",  size: "700x500",controls: true, autobuffer: true) %>
-      <% end  %>
-      <% if ConceptResource.find(@learned_concept.resource_id).resource_content_type == "application/pdf" %>
-        <iframe src="/pdfjs/web/viewer.html?file=<%=ConceptResource.find(@learned_concept.resource_id).resource.url %>" style="border: 0" width="90%" height="650" frameborder="0" scrolling="no"></iframe>
-      <% end %>
+    <% cr = ConceptResource.find(@learned_concept.resource_id) %>
+    <% if  cr.resource_content_type == "application/pdf" %>
+
+        <%= pdfjs_viewer pdf_url: "#{cr.resource.url}", style: :minimal %>
+
+    <% elsif cr.resource_content_type == "video/mp4" %>
+        <%=  video_tag("#{cr.resource.url}",  size: "700x500",controls: true, autobuffer: true) %>
+     <% end %>
+
   </div>
 
   <%=  f.submit 'Go to next concept', :class=>'btn btn-primary'%>

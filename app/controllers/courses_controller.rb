@@ -71,12 +71,12 @@ class CoursesController < ApplicationController
         lc.completion_level = 0
       end
       respond_to do |format|
-        format.html { redirect_to learned_courses_path, notice: 'Registered for the course.' }
+        format.html { redirect_to course_path(@course), notice: 'Registered for the course.' }
         format.json { head :no_content }
       end
     else
-
-      redirect_to learned_courses_path, warning: 'Already registered for the course.'
+      @learned_course = LearnedCourse.where(course_id: @course.id, student_id: current_user.id ).first
+      redirect_to learned_course_path(), warning: 'Already registered for the course.'
     end
   end
 

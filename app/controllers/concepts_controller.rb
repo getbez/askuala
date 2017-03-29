@@ -64,12 +64,7 @@ class ConceptsController < ApplicationController
   end
   
   def learn
-    #    t.integer   :learned_course_id
-    #    t.datetime  :end_time
-    #    t.datetime  :start_time
-    #    t.integer   :concept_id
-    #    t.integer    :resource_id
-    #    t.boolean   :completed
+
    @learned_concept= LearnedConcept.new 
    @concept=Concept.find(params[:id])
     learner_pref=LearnerPreference.where(:student_id=>current_user.id).first
@@ -83,7 +78,10 @@ class ConceptsController < ApplicationController
       @learned_concept.concept_id=@concept.id
     
       @concept_resource = ConceptResource.new
-      @concept_resource=@concept.concept_resources.where(:presentation_mode=>preference.presentation_mode,:resource_type=>preference.resource_type).first
+      @concept_resource=@concept.concept_resources.select{
+          |cr| cr.presentation_mode == Preference.presentation_modes[preference.presentation_mode] &&
+            cr.resource_type == Preference.resource_types[preference.resource_type]
+      }.first
       if(@concept_resource.nil?)
         @learned_course=LearnedCourse.find(@learned_concept.learned_course_id)
        redirect_to learned_course_path(@learned_course)
