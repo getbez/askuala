@@ -8,10 +8,10 @@
 
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
 </head>
 
 <body class="nav-md" <% if not user_signed_in?  %> style="background:#F7F7F7;" <% end %>  >
+<div class="ui-pnotify " style="width: 300px; opacity: 1; display: block; overflow: visible; right: 25px; top: 25px; cursor: auto;"><div class="alert ui-pnotify-container alert-dark ui-pnotify-shadow" style="min-height: 16px; overflow: hidden;"><div class="ui-pnotify-closer" style="cursor: pointer; visibility: hidden; display: none;"><span class="glyphicon glyphicon-remove" title="Close"></span></div><div class="ui-pnotify-sticker" style="cursor: pointer; visibility: hidden; display: none;"><span class="glyphicon glyphicon-pause" title="Stick"></span></div><div class="ui-pnotify-icon"><span class="glyphicon glyphicon-bullhorn"></span></div><h4 class="ui-pnotify-title">PNotify</h4><div class="ui-pnotify-text">Welcome. Try hovering over me. You can click things behind me, because I'm non-blocking.</div></div></div>
 <div class="container body">
   <% flash.each do |key, value| %>
       <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>

@@ -44,10 +44,10 @@ class ConceptResource < ApplicationRecord
           }
       }
     elsif is_pdf_type?
-=begin
+
       {:large => "750x750>", :medium => "300x300#", :thumb => "100x100#" }
-=end
-      # resource_file_name = self.basename(:resource_file_name, self.extname(:resource_file_name))
+
+      #resource_file_name = self.basename(:resource_file_name, self.extname(:resource_file_name))
     else
       {}
     end

@@ -64,7 +64,7 @@ class ConceptsController < ApplicationController
   end
   
   def learn
-
+    logger.debug("**********learn************")
    @learned_concept= LearnedConcept.new 
    @concept=Concept.find(params[:id])
     learner_pref=LearnerPreference.where(:student_id=>current_user.id).first
@@ -84,7 +84,11 @@ class ConceptsController < ApplicationController
       }.first
       if(@concept_resource.nil?)
         @learned_course=LearnedCourse.find(@learned_concept.learned_course_id)
-       redirect_to learned_course_path(@learned_course)
+
+        respond_to do |format|
+          format.html { redirect_to learned_course_path(@learned_course), notice: 'resource not found' }
+          format.json { head :no_content }
+        end
       else
         @learned_concept.resource_id=@concept_resource.id
       end

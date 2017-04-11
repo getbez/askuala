@@ -26,7 +26,7 @@
     <% cr = ConceptResource.find(@learned_concept.resource_id) %>
     <% if  cr.resource_content_type == "application/pdf" %>
 
-        <%= pdfjs_viewer pdf_url: "#{cr.resource.url}", style: :minimal %>
+         <iframe src="/pdfjs/web/viewer.html?file=<%=cr.resource.url%>" style="border: 0" width="70%" height="600" frameborder="0" scrolling="no"></iframe>
 
     <% elsif cr.resource_content_type == "video/mp4" %>
         <%=  video_tag("#{cr.resource.url}",  size: "700x500",controls: true, autobuffer: true) %>
@@ -34,7 +34,7 @@
 
   </div>
 
-  <%=  f.submit 'Go to next concept', :class=>'btn btn-primary'%>
+  <%=  f.submit 'Continue >>', :class=>'btn btn-primary'%>
 
 <%end%>
 <%= link_to 'Back' %>

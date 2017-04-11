@@ -72,11 +72,20 @@ class LearnedCoursesController < ApplicationController
       availables << Concept.find_by(course_id: @learned_course.course_id,level: 1)
       logger.debug "**************availables: #{availables.to_json}"
     else
+      learned_concept_ids = @learned_course.learned_concepts.pluck(:concept_id)
       all_concepts=Concept.where(:course_id => @learned_course.course_id)
-      learned_concepts= @learned_course.learned_concepts
-      remaining_concepts=all_concepts-learned_concepts 
-    
+      learned_concepts = Concept.where(:id => learned_concept_ids)
+=begin
+      @learned_course.learned_concepts.each do |lc|
+        learned_concepts << Concept.find(lc.concept_id)
+      end
+=end
+
+
+      remaining_concepts=all_concepts-learned_concepts
+
       logger.debug "**************all_concepts: #{all_concepts.to_json}"
+      logger.debug "**************learned_concept_ids: #{learned_concept_ids}"
       logger.debug "**************learned: #{learned_concepts.to_json}"
       logger.debug "**************remain #{remaining_concepts.to_json}"
       current_concept=Concept.find(@learned_course.current_concept)

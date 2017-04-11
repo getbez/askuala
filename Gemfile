@@ -64,3 +64,5 @@ gem 'devise'
 gem 'pg', '~> 0.18'
 
 gem 'pdfjs_rails'
+
+gem "better_errors"
