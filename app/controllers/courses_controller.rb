@@ -80,6 +80,23 @@ class CoursesController < ApplicationController
     end
   end
 
+  def students
+    course_id = params[:id]
+    @students = Student.where(:id => LearnedCourse.where(course_id: course_id).pluck(:student_id) )
+    @students
+  end
+
+  def student_detail
+    course_id = params[:course_id]
+    student_id = params[:id]
+
+    @student = Student.find(student_id)
+    @learned_course = LearnedCourse.where({course_id: course_id, student_id: student_id})
+
+
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course

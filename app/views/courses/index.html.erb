@@ -63,6 +63,7 @@
                         <% end %>
                     <% end %>
                     <% if current_user.type == 'Teacher' %>
+                        <%= link_to 'View students',"/courses/#{course.id}/students", :class => "btn btn-primary" %>
                         <%= link_to 'Edit', edit_course_path(course), :class => "btn btn-primary" %>
                         <%= link_to 'Delete', course, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
 

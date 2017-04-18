@@ -33,7 +33,7 @@ class ConceptResourcesController < ApplicationController
     @concept_resource.concept_id = params[:concept_id]
     respond_to do |format|
       if @concept_resource.save
-        format.html { redirect_to @concept_resource, notice: 'Concept resource was successfully created.' }
+        format.html { redirect_to edit_concept_path(params[:concept_id]), notice: 'Concept resource was successfully created.' }
         format.json { render :show, status: :created, location: @concept_resource }
       else
         format.html { render :new }
@@ -59,9 +59,10 @@ class ConceptResourcesController < ApplicationController
   # DELETE /concept_resources/1
   # DELETE /concept_resources/1.json
   def destroy
+    concept_id = @concept_resource.concept_id
     @concept_resource.destroy
     respond_to do |format|
-      format.html { redirect_to concept_concept_resources_path, notice: 'Concept resource was successfully destroyed.' }
+      format.html { redirect_to edit_concept_path(concept_id), notice: 'Concept resource was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

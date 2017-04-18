@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Students</h2>
+
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+
+        <!-- start project list -->
+        <table class="table table-striped projects">
+          <thead>
+          <tr>
+            <th style="width: 1%">#</th>
+            <th style="width: 20%">Student Name</th>
+            <th>Progress</th>
+            <th>Current Grade</th>
+            <th style="width: 20%"></th>
+          </tr>
+          </thead>
+          <tbody>
+         <% @students.each do |student| %>
+          <% lc= student.learned_courses.find_by(course_id: params[:id]) %>
+          <tr>
+            <td>#</td>
+            <td>
+              <a><%= student.name %></a>
+            </td>
+            <td class="project_progress">
+              <div class="progress progress_sm">
+                <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57" style="width: <%= lc.completion_level*100%>%;" aria-valuenow="56"></div>
+              </div>
+              <small><%= sprintf "%.2f", lc.completion_level*100%>% Complete</small>
+            </td>
+            <td>
+                <%= sprintf "%.2f", lc.current_grade%>
+            </td>
+            <td>
+              <a href="/courses/<%=params[:id]%>/students/<%=student.id%>" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
+
+            </td>
+          </tr>
+         <% end %>
+
+          </tbody>
+        </table>
+        <!-- end project list -->
+
+      </div>
+    </div>
+  </div>
+</div>
