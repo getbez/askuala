@@ -93,8 +93,6 @@ class CoursesController < ApplicationController
     @student = Student.find(student_id)
     @learned_course = LearnedCourse.where({course_id: course_id, student_id: student_id})
 
-
-
   end
 
   private

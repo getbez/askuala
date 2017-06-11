@@ -31,6 +31,34 @@
     </div>
 </div>
 
+<div class="x_panel">
+    <div class="x_title">
+        <div class="col-md-8">
+         <h2>Assessments for Concept</h2>
+        </div>
+        <div class="col-md-4">
+           <%= link_to 'Add New Assessment', new_concept_assessment_path(@concept),:class=>'btn btn-primary' %>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+   
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Level</th>
+                    <th>Passing Grade</th>
+                    <th>No.of Questions</th>
+                    <th colspan="3">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%= render @concept.assessments, assessments:@concept.assessments %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 
 <%= link_to 'Show', @concept %> |

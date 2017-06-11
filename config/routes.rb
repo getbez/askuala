@@ -17,12 +17,14 @@ Rails.application.routes.draw do
      resources :concepts, shallow: true  do
        resources :concept_resources
        resources :concept_prerequisites
+       resources :assessments
      end
    end
 
    resources :preferences
    resources :learned_courses
    resources :learned_concepts
+   resources :questions
 
     resources :students
 

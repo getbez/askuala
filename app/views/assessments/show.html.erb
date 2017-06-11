@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @assessment.level %>
+</p>
+
+<p>
+  <strong>Min passing grade:</strong>
+  <%= @assessment.min_passing_grade %>
+</p>
+
+<p>
+  <strong>Concept:</strong>
+  <%= @assessment.concept_id %>
+</p>
+
+<%= link_to 'Edit', edit_assessment_path(@assessment) %> |
+<%= link_to 'Back', edit_concept_path(@assessment.concept_id) %>

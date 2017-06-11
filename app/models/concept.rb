@@ -20,6 +20,7 @@ class Concept < ApplicationRecord
     class_name: "ConceptPrerequisite", 
     foreign_key: "concept_id"
   has_many :prerequisites, :through => :concept_prerequisites 
+  has_many :assessments
  
 end
 

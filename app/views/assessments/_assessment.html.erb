@@ -1,0 +1,11 @@
+      <tr>
+        <td><%= assessment.level%></td>
+        <td><%= assessment.min_passing_grade %></td>
+        <td><%= assessment.questions.count %></td>
+      
+
+        <td>
+          <%= link_to 'Edit', edit_assessment_path(assessment), class: 'btn btn-primary' %>
+          <%= link_to 'Remove', assessment, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>

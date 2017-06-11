@@ -3,7 +3,7 @@
 <div class="wrapper wrapper-content">
     <div class="ibox float-e-margins">
         <div class="ibox-content">
-            <%= form_for @concept_resource , url:concept_concept_resources_path do |f| %>
+            <%= form_for (@concept_resource , url:concept_concept_resources_path) do |f| %>
               <% if @concept_resource.errors.any? %>
                 <div id="error_explanation">
                     <h2><%= pluralize(@concept_resource.errors.count, "error") %> prohibited this concept_resource from being saved:</h2>

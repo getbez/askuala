@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326124435) do
+ActiveRecord::Schema.define(version: 20170601084105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 20170326124435) do
     t.datetime "start_time"
     t.string   "assessment_id"
     t.string   "student_user_id"
+  end
+
+  create_table "assessments", force: :cascade do |t|
+    t.integer "level",             null: false
+    t.decimal "min_passing_grade", null: false
+    t.integer "concept_id",        null: false
   end
 
   create_table "authors", force: :cascade do |t|
@@ -113,8 +119,8 @@ ActiveRecord::Schema.define(version: 20170326124435) do
     t.string  "target_concept"
     t.string  "answer"
     t.text    "test_code"
-    t.string  "assessment_id"
     t.integer "difficulty_level_id"
+    t.integer "assessment_id",       null: false
   end
 
   create_table "users", force: :cascade do |t|
