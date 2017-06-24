@@ -26,6 +26,8 @@ Rails.application.routes.draw do
    resources :learned_concepts
    resources :questions
 
-    resources :students
-
+  resources :students
+  resources :questions
+  resources :question_answers
+  resources :choices
 end

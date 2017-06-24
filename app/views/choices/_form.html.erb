@@ -1,0 +1,28 @@
+<%= form_for(choice) do |f| %>
+  <% if choice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(choice.errors.count, "error") %> prohibited this choice from being saved:</h2>
+
+      <ul>
+      <% choice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :letter %>
+    <%= f.text_field :letter %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+  <%= f.number_field :question_id, :hidden => true %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -20,7 +20,7 @@
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
     </div>
-  <% end -%>
+  <% end %>
 
   <div>
     <%= f.submit "Log in" , class: "btn btn-default submit"%>
@@ -29,6 +29,8 @@
 <% end %>
         </section>
  </div>
+
+ <%= link_to 'I am a teacher' , "/teachers/sign_in", class: "btn btn-primary" %>s
 
  <div class="animate form">
         <section class="login_content">   

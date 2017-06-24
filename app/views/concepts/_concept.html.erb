@@ -1,7 +1,6 @@
 <tr>
-        <td><%= concept.level %></td>
         <td><%= concept.title %></td>
-        <td><%= concept.course.title %></td>
+        <td><%= concept.level %></td>      
         <td>
           <%= link_to 'Edit', edit_concept_path(concept) %> |
           <%= link_to 'Delete', concept, method: :delete, data: { confirm: 'Are you sure?' } %>

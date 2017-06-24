@@ -1,0 +1,8 @@
+<tr>
+  <td><%= choice.letter %></td>
+  <td><%= choice.content %></td>
+
+  <td>
+    <%= link_to 'Remove', choice, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  </td>
+</tr>

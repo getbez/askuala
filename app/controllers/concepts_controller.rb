@@ -26,12 +26,18 @@ class ConceptsController < ApplicationController
   # POST /concepts.json
   def create
     @concept = Concept.new(concept_params)
-    @concept.course_id = params[:course_id];
-    
+    if(@concept.prerequisites.nil? || @concept.prerequisites.size == 0)
+      @concept.level = 1
+    else
+      @concept.level =  @concept.prerequisites.max_by(&:level).level+1
+    end
+    @concept.course_id = params[:course_id]
+    @course = Course.find(@concept.course_id)
+
     respond_to do |format|
       if @concept.save
-        format.html { redirect_to @concept, notice: 'Concept was successfully created.' }
-        format.json { render :show, status: :created, location: @concept }
+        format.html { redirect_to  edit_course_path(@course), notice: 'Concept was successfully created.' }
+        format.json { render :show, status: :created, location:  @course }
       else
         format.html { render :new }
         format.json { render json: @concept.errors, status: :unprocessable_entity }
@@ -42,10 +48,11 @@ class ConceptsController < ApplicationController
   # PATCH/PUT /concepts/1
   # PATCH/PUT /concepts/1.json
   def update
+    @course = Course.find(@concept.course_id)
     respond_to do |format|
       if @concept.update(concept_params)
-        format.html { redirect_to @concept, notice: 'Concept was successfully updated.' }
-        format.json { render :show, status: :ok, location: @concept }
+        format.html { redirect_to edit_course_path(@course), notice: 'Concept was successfully updated.' }
+        format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
         format.json { render json: @concept.errors, status: :unprocessable_entity }
@@ -56,27 +63,28 @@ class ConceptsController < ApplicationController
   # DELETE /concepts/1
   # DELETE /concepts/1.json
   def destroy
+    @course = Course.find(@concept.course_id)
     @concept.destroy
     respond_to do |format|
-      format.html { redirect_to concepts_url, notice: 'Concept was successfully destroyed.' }
+      format.html { redirect_to edit_course_path(@course), notice: 'Concept was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
-  
+
   def learn
     logger.debug("**********learn************")
-   @learned_concept= LearnedConcept.new 
+   @learned_concept= LearnedConcept.new
    @concept=Concept.find(params[:id])
     learner_pref=LearnerPreference.where(:student_id=>current_user.id).first
     if learner_pref.nil?
       redirect_to new_preference_path
     else
       preference=Preference.find(learner_pref.preference_id)
-      
+
       @learned_concept.learned_course_id=params[:lc_id]
       @learned_concept.start_time= Time.now
       @learned_concept.concept_id=@concept.id
-    
+
       @concept_resource = ConceptResource.new
       @concept_resource=@concept.concept_resources.select{
           |cr| cr.presentation_mode == Preference.presentation_modes[preference.presentation_mode] &&
@@ -92,7 +100,7 @@ class ConceptsController < ApplicationController
       else
         @learned_concept.resource_id=@concept_resource.id
       end
-      
+
     end
   end
 

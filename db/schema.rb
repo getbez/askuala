@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601084105) do
+ActiveRecord::Schema.define(version: 20170624161839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,8 +35,9 @@ ActiveRecord::Schema.define(version: 20170601084105) do
   end
 
   create_table "choices", force: :cascade do |t|
-    t.string "content"
-    t.string "letter"
+    t.string  "content"
+    t.string  "letter"
+    t.integer "question_id"
   end
 
   create_table "concept_prerequisites", force: :cascade do |t|
@@ -85,9 +86,9 @@ ActiveRecord::Schema.define(version: 20170601084105) do
   end
 
   create_table "learned_courses", force: :cascade do |t|
-    t.float   "completion_level", null: false
+    t.float   "completion_level",               null: false
     t.integer "current_concept"
-    t.float   "current_grade"
+    t.float   "current_grade",    default: 0.0
     t.string  "starting_level"
     t.integer "course_id"
     t.integer "student_id"
@@ -112,15 +113,14 @@ ActiveRecord::Schema.define(version: 20170601084105) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string  "DTYPE",               null: false
     t.integer "average_time",        null: false
     t.string  "question_string"
     t.integer "question_type"
-    t.string  "target_concept"
     t.string  "answer"
-    t.text    "test_code"
+    t.string  "assessment_id"
     t.integer "difficulty_level_id"
-    t.integer "assessment_id",       null: false
+    t.integer "target_concept"
+    t.integer "num_of_answers"
   end
 
   create_table "users", force: :cascade do |t|

@@ -11,6 +11,9 @@
 
 class ConceptResource < ApplicationRecord
   belongs_to :concept
+
+  enum presentation_mode: { text:0, video:1}
+  enum resource_type: { core_concept:0, example:1}
   
   # Apply styling appropriate for this file
   has_attached_file :resource, styles: lambda { |a| a.instance.check_file_type},default_url: "/images/missing.png"

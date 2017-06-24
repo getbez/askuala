@@ -1,0 +1,8 @@
+<tr>
+  <td><%= Choice.find(question_answer.choice_id).letter %></td>
+  <td><%= question_answer.explanation %></td>
+
+  <td>
+    <%= link_to 'Remove', question_answer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  </td>
+</tr>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Choice:</strong>
+  <%= @question_answer.choice_id %>
+</p>
+
+<p>
+  <strong>Explanation:</strong>
+  <%= @question_answer.explanation %>
+</p>
+
+<p>
+  <strong>Question:</strong>
+  <%= @question_answer.question_id %>
+</p>
+
+<%= link_to 'Edit', edit_question_answer_path(@question_answer) %> |
+<%= link_to 'Back', question_answers_path %>

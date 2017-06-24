@@ -1,9 +1,9 @@
-<h1>New Concept Resource</h1>
+<h1>New Resource for Concept: <span class="label label-info">  <%= Concept.find(@concept_resource.concept_id).title%></span> </h1>
 
 <div class="wrapper wrapper-content">
     <div class="ibox float-e-margins">
         <div class="ibox-content">
-            <%= form_for (@concept_resource , url:concept_concept_resources_path) do |f| %>
+            <%= form_for @concept_resource , url: concept_concept_resources_path do |f| %>
               <% if @concept_resource.errors.any? %>
                 <div id="error_explanation">
                     <h2><%= pluralize(@concept_resource.errors.count, "error") %> prohibited this concept_resource from being saved:</h2>
@@ -26,10 +26,9 @@
                     <%= f.label :resource_type %>
                     <%= f.collection_select :resource_type, Preference.resource_types, :first, :first, {include_blank: true}, {class: 'form-control'} %>
                   </div>
-                  <div class="field">
-                      <%= f.label :concept_id %><br>
-                      <%= f.number_field :concept_id %>
-                  </div>
+
+                  <%= f.number_field :concept_id, :hidden => true %>
+
                   <div class="field">
                       <%= f.label :resource %><br>
                       <%= f.file_field :resource %>

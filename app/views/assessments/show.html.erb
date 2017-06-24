@@ -12,8 +12,34 @@
 
 <p>
   <strong>Concept:</strong>
-  <%= @assessment.concept_id %>
+  <%= Concept.find(@assessment.concept_id).title %>
 </p>
+
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Questions</h2>
+    <%= link_to 'Add Question' , new_question_path(assessment_id: params[:id]) , class: 'btn btn-primary pull-right'%>
+    <div class="clearfix"></div>
+  </div>
+  <div>
+      <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th>Question</th>
+                  <th>Question Type</th>
+                  <th>Difficuty Level</th>
+                  <th>Average Time</th>
+                  <th colspan="3">Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              <%= render @assessment.questions, questions:@assessment.questions %>
+          </tbody>
+      </table>
+  </div>
+
+  <div>
+
 
 <%= link_to 'Edit', edit_assessment_path(@assessment) %> |
 <%= link_to 'Back', edit_concept_path(@assessment.concept_id) %>

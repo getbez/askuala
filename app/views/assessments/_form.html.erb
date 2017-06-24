@@ -10,19 +10,18 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :concept_id %>
     <%= f.number_field :concept_id , class: 'hidden'%>
-    <%= Concept.find(assessment.concept_id)&.title  %>
+    <span class="label label-info"><%= Concept.find(assessment.concept_id)&.title  %></span>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :level %>
     <%= f.collection_select :level, Assessment.levels, :first, :first, {:include_blank => '-- Select --'},{:class => 'form-control'} %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :min_passing_grade %>
-    <%= f.text_field :min_passing_grade %>
-  </div>  
-
+    <%= f.text_field :min_passing_grade , class: "form-control"%>
+  </div>

@@ -1,0 +1,62 @@
+<%= form_for(question) do |f| %>
+  <% if question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form_group">
+    <%= f.label :target_concept %>
+    <%= f.number_field :target_concept,hidden: true%>
+    <label class=" badge badge-info"> <%= Concept.find(question.target_concept).title%> </label>
+  </div>
+  <div class="form_group">
+    <%= f.label :question_type %>
+    <%= f.collection_select :question_type, Question.question_types ,:second, :first,{include_blank: '-- Choose --'}, {:id => 'question_type_select', :onChange=> 'changeAnswer(this);', :class => 'form-control', :required => true }%>
+  </div>
+
+  <div class="form_group">
+    <%= f.label :question_string %>
+    <%= f.text_field :question_string , class: "form-control"%>
+  </div>
+
+  <div class="form_group">
+    <%= f.label :average_time %> (in Mins)
+    <%= f.number_field :average_time, class: "form-control" %>
+  </div>
+
+  <div class="form_group">
+    <%= f.label :difficulty_level_id %>
+    <%= f.number_field :difficulty_level_id , class: "form-control"%>
+  </div>
+
+  <%= f.number_field :assessment_id, hidden: true%>
+
+  <div class="form_group">
+    <%= f.label :answer %>
+    <%= f.text_field :answer ,{class: "form-control", id: "straight_answer_field"}%>
+  </div>
+  <br/>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<script type= "text/javascript">
+
+    function changeAnswer(obj){
+      if(obj.value != <%=Question.question_types[:straight_answer]%>)
+        document.getElementById('straight_answer_field').disabled = true;
+      else {
+        document.getElementById('straight_answer_field').disabled = false;
+      }
+    }
+
+</script>

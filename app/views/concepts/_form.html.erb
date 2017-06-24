@@ -1,7 +1,6 @@
-<div class="wrapper wrapper-content">
-    <div class="ibox float-e-margins">
-        <div class="ibox-content">
-            <%= form_for @concept do |f| %>
+<div class="x_panel">
+  <div>
+    <%= form_for @concept do |f| %>
               <% if @concept.errors.any? %>
                 <div id="error_explanation">
                     <h2><%= pluralize(@concept.errors.count, "error") %> prohibited this concept from being saved:</h2>
@@ -13,35 +12,38 @@
                     </ul>
                 </div>
               <% end %>
-
-              <div class="field">
-                  <%= f.label :level %><br>
-                  <%= f.number_field :level %>
-              </div>
               <div class="field">
                   <%= f.label :title %><br>
                   <%= f.text_field :title %>
               </div>
               <div class="field">
+                  <%= f.label :level %><br>
+                  <%= f.number_field :level, :disabled=> true, :class=>'form-control' %>
+              </div>
+              <div class="field">
                   <%= f.label :course_id %><br>
-                  <%= f.text_field :course_id %>
+                  <%= Course.find(@concept.course_id).title %>
               </div>
               <br>
               <div class="field">
-                  <%= f.label "Prerequisites" %><br />
-                  <%= f.collection_check_boxes :prerequisite_ids,Concept.where.not(id: @concept.id), :id, :title do |con| %>
-                    <div class="collection-check-box">
+                <div class = "col-md-3">
+                    <%= f.label "Prerequisites" %>
+                </div>
+
+                  <div class= "col-md-9">
+                   <%= f.collection_check_boxes :prerequisite_ids,Concept.where.not(id: @concept.id), :id, :title do |con| %>
+                    <div class="col-md-3">
                         <%= con.check_box %>
                         <%= con.label %>
                     </div>
                   <% end %>
+                </div>
               </div>
               <br>
-              <div class="actions">
+              <div class="actions ">
                   <%= f.submit :class => 'btn btn-primary' %>
               </div>
               <br>
-            <% end %>
-        </div>
-    </div>
+    <% end %>
+  </div>
 </div>

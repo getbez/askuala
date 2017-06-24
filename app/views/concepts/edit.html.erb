@@ -1,6 +1,14 @@
 <h1>Editing Concept</h1>
-
-<%= render 'form' %>
+<div class="x_panel">
+  <div class="col-sm-4">
+    <h2>Edit Concept</h2>
+  </div>
+  <div class="col-sm-8">
+      <%= link_to 'Cancel', edit_course_path(@concept.course_id),  :class => "btn btn-default pull-right  "%>
+  </div>
+  
+  <%= render 'form' %>
+</div>
 
 <div class="x_panel">
     <div class="x_title">
@@ -12,7 +20,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-   
+
     <div>
         <table class="table table-hover">
             <thead>
@@ -41,7 +49,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-   
+
     <div>
         <table class="table table-hover">
             <thead>

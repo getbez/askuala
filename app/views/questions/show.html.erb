@@ -1,0 +1,92 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Question type:</strong>
+  <%= @question.question_type %>
+</p>
+
+<p>
+  <strong>Question string:</strong>
+  <%= @question.question_string %>
+</p>
+
+<p>
+  <strong>Average time:</strong>
+  <%= @question.average_time %>
+</p>
+
+<p>
+  <strong>Difficulty level:</strong>
+  <%= @question.difficulty_level_id %>
+</p>
+
+<p>
+  <strong>Assessment:</strong>
+  <%= @question.assessment_id %>
+</p>
+
+<p>
+  <strong>Target concept:</strong>
+  <%= @question.target_concept %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @question.answer %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back',  edit_concept_path(@question.target_concept) %>
+
+<div class="x_panel">
+    <div class="x_title">
+        <div class="col-md-8">
+         <h2>Answer Choices</h2>
+        </div>
+        <div class="col-md-4">
+           <%= link_to 'Add Choice', new_choice_path(question_id: @question.id),:class=>'btn btn-primary' %>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Letter</th>
+                    <th>Content</th>
+                    <th colspan="3">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%= render @question.choices, choices:@question.choices %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="x_panel">
+    <div class="x_title">
+        <div class="col-md-8">
+         <h2>Answer</h2>
+        </div>
+        <div class="col-md-4">
+           <%= link_to 'Add Answer', new_question_answer_path(question_id: @question.id),:class=>'btn btn-primary' %>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Letter</th>
+                    <th>Reason</th>
+                    <th colspan="3">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%= render @question.question_answers, question_answers:@question.question_answers %>
+            </tbody>
+        </table>
+    </div>
+</div>
