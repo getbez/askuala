@@ -36,7 +36,8 @@ class PreferencesController < ApplicationController
           lp.student_id = current_user.id
           lp.preference_id = pref_id
         end
-        format.html { redirect_to @preference, notice: 'Preference was successfully created.' }
+      
+        format.html { redirect_to courses_url, notice: 'Preference was successfully created.' }
         format.json { render :show, status: :created, location: @preference }
       else
         format.html { render :new }
