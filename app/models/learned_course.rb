@@ -19,5 +19,6 @@
 # t.string :student_user_id
 
 class LearnedCourse < ApplicationRecord
-  has_many :learned_concepts 
+  has_many :learned_concepts
+  has_many :assessment_infos, through: :learned_concepts
 end

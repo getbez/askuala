@@ -15,7 +15,8 @@ class AssessmentsController < ApplicationController
   # GET /assessments/new
   def new
     @assessment = Assessment.new
-    @assessment.concept_id = params[:concept_id]
+    @assessment.learned_concept_id = params[:lc_id]
+    @assessment.student_user_id = current_user.id
   end
 
   # GET /assessments/1/edit
@@ -61,6 +62,7 @@ class AssessmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

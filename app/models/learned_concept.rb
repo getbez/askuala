@@ -19,4 +19,5 @@
 # t.boolean   :completed
 class LearnedConcept < ApplicationRecord
   belongs_to :learned_course
+  has_many :assessment_infos
 end

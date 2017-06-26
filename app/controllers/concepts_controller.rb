@@ -85,11 +85,15 @@ class ConceptsController < ApplicationController
       @learned_concept.start_time= Time.now
       @learned_concept.concept_id=@concept.id
 
-      @concept_resource = ConceptResource.new
+      logger.debug("---preference---pm-#{preference.presentation_mode}")
+      logger.debug("---preference---rt-#{preference.resource_type}")
+
       @concept_resource=@concept.concept_resources.select{
-          |cr| cr.presentation_mode == Preference.presentation_modes[preference.presentation_mode] &&
-            cr.resource_type == Preference.resource_types[preference.resource_type]
+          |cr| cr.presentation_mode == preference.presentation_mode &&
+            cr.resource_type == preference.resource_type
       }.first
+
+
       if(@concept_resource.nil?)
         @learned_course=LearnedCourse.find(@learned_concept.learned_course_id)
 

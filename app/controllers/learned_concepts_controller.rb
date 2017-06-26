@@ -26,23 +26,23 @@ class LearnedConceptsController < ApplicationController
   def create
     @learned_concept = LearnedConcept.new(learned_concept_params)
     @learned_concept.end_time=Time.now
-    @learned_concept.completed=true
-    
-    
-    
+  #  @learned_concept.completed=true
+
+
+
     respond_to do |format|
       if @learned_concept.save
         @learned_course = LearnedCourse.find(@learned_concept.learned_course_id)
         @learned_course.current_concept=@learned_concept.concept_id
-        
+
         logger.debug "**************learned_concepts: #{@learned_course.learned_concepts.count}"
         logger.debug "**************all_concepts: #{Course.find(@learned_course.course_id).concepts.count}"
-       
-        lc_count= @learned_course.learned_concepts.count.to_f
-        c_count = Course.find(@learned_course.course_id).concepts.count
-         logger.debug "**************all_ratio:#{lc_count/c_count}"
-         @learned_course.starting_level=1
-        @learned_course.completion_level= lc_count/c_count
+
+        # lc_count= @learned_course.learned_concepts.count.to_f
+        # c_count = Course.find(@learned_course.course_id).concepts.count
+        # logger.debug "**************all_ratio:#{lc_count/c_count}"
+        # @learned_course.starting_level=1
+        # @learned_course.completion_level= lc_count/c_count
         @learned_course.save
         format.html { redirect_to @learned_course, notice: 'Learned concept was successfully created.' }
         format.json { render :show, status: :created, location: @learned_concept }
