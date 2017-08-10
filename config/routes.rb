@@ -30,4 +30,5 @@ Rails.application.routes.draw do
   resources :questions
   resources :question_answers
   resources :choices
+  resources :assessment_infos
 end

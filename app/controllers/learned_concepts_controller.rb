@@ -24,9 +24,15 @@ class LearnedConceptsController < ApplicationController
   # POST /learned_concepts
   # POST /learned_concepts.json
   def create
-    @learned_concept = LearnedConcept.new(learned_concept_params)
+    @learned_concept = LearnedConcept.find_by(concept_id: learned_concept_params[:concept_id])
+    if @learned_concept
+        @learned_concept = @learned_concept.update(learned_concept_params)
+    else
+        @learned_concept = LearnedConcept.new(learned_concept_params)
+    end
+
     @learned_concept.end_time=Time.now
-  #  @learned_concept.completed=true
+    @learned_concept.completed=false
 
 
 

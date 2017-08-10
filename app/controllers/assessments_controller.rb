@@ -15,8 +15,7 @@ class AssessmentsController < ApplicationController
   # GET /assessments/new
   def new
     @assessment = Assessment.new
-    @assessment.learned_concept_id = params[:lc_id]
-    @assessment.student_user_id = current_user.id
+    @assessment.concept_id = params[:concept_id]
   end
 
   # GET /assessments/1/edit
@@ -72,6 +71,6 @@ class AssessmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assessment_params
-      params.require(:assessment).permit(:level, :min_passing_grade, :concept_id)
+      params.require(:assessment).permit(:title, :level, :min_passing_grade, :concept_id)
     end
 end

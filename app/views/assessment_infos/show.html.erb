@@ -1,0 +1,43 @@
+  <% @assessment = Assessment.find(@assessment_info.assessment_id) %>
+  <% @learned_concept = LearnedConcept.find_by(concept_id: @assessment.concept_id) %>
+<h2><%= @assessment.title %></h2>
+    <% count  = 1 %>
+
+      <div class="alert alert-info fade in">
+        Result: <%=@assessment_info.result%> %
+      </div>
+
+
+    <% @assessment.questions.each do |question| %>
+    <% student_answer = @assessment_info.student_answers.where(question_id: question.id).first %>
+
+              <div class = 'x_panel'>
+                <div>
+                  <b><%="Question "+count.to_s+": "%></b> <%=question.question_string %>
+               </div>
+                    <% if question.question_type == Question.question_types[:multi_choice] %>
+                      <% question.choices.each do |choice|%>
+                        <%=radio_button_tag :answer_choice_id,choice.id,(student_answer.answer_choice_id == choice.id)%><%=choice.content%>
+                        <br/>
+                      <%end%>
+                   <% else %>
+                     <%=text_field_tag :answer_text,student_answer.answer_text, :class => 'form-control'%>
+                     <%=number_field_tag :question_id,question.id, {:hidden => true, :class => 'form-control'}%>
+                  <% end %>
+                  <br/>
+                  <div>
+                    <%if student_answer.correct %>
+                     <div class="alert alert-success fade in"><span class="glyphicon glyphicon-ok"></span>  Correct</div>
+                    <% else %>
+                     <div class="alert alert-danger fade in"><span class="glyphicon glyphicon-remove"></span>  Wrong
+                       <p>
+                         Answer is: <%= question.answer ? question.answer : "#{Choice.find(question.question_answers.first.choice_id).letter}.#{Choice.find(question.question_answers.first.choice_id).content}"%>
+                       </p>
+                     </div>
+                    <% end %>
+                 </div>
+              </div>
+           <% count = count + 1 %>
+    <% end %>
+
+    <%= link_to 'Back to my course',learned_course_path(@learned_concept.learned_course) , :Class=>'btn btn-primary'%></td>

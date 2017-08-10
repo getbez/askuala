@@ -42,7 +42,8 @@
 </div>
 
 <div class="row ">
-    <div class="col-md-6 x_panel tile">
+  <div class="col-md-6 col-xs-12">
+    <div class="x_panel">
         <div class="x_title">
             <h2>Learned Concepts</h2>
             <div class="clearfix"></div>
@@ -66,12 +67,40 @@
             </table>
         </div>
     </div>
-    <div class="col-md-6 x_panel tile">
+  </div>
+  <div class="col-md-6 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Next Available Topics</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Concept title</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @available_concepts.each do |ac| %>
+                      <tr>
+                          <td><%= ac.title %></td>
+                          <td><%= link_to 'Start Learning',"/learned_courses/#{@learned_course.id}/concepts/#{ac.id}/learn" , :Class=>'btn btn-primary'%></td>
+                      </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-xs-12">
+    <div class="x_panel">
         <div class="x_title">
             <h2>Assessments Due</h2>
             <div class="clearfix"></div>
         </div>
-        <% @assessments_due = Assessment.where(concept_id: @learned_course.learned_concepts.collect(&:concept_id))%>
+        <% @assessments_due = Assessment.where(concept_id: @available_concepts.collect(&:id))%>
         <div class="x_content">
             <table class="table table-striped">
                 <thead>
@@ -86,7 +115,11 @@
                       <tr>
                           <td><%= Concept.find(ad.concept_id).title %></td>
                           <td><%= ad.level %></td>
-                          <td><%=link_to 'Take Assessment' , new_assessment_info_path(assessment_id: ad.id, student_user_id: current_user.id), class: 'btn btn-primary'%></td>
+                          <% if LearnedConcept.find_by(concept_id: ad.concept_id).completed%>
+                            <td>Passed Result: <%=AssessmentInfo.where(assessment_id: ad.id).last.result %></td>
+                          <% else %>
+                            <td><%=link_to 'Take Assessment' , new_assessment_info_path(assessment_id: ad.id), class: 'btn btn-primary'%></td>
+                          <% end %>
 
                       </tr>
                     <% end %>
@@ -94,7 +127,9 @@
             </table>
         </div>
     </div>
-    <div class="col-md-6 x_panel tile">
+  </div>
+  <div class="col-md-6 col-xs-12">
+    <div class="x_panel">
         <div class="x_title">
             <h2>Assessments Taken</h2>
             <div class="clearfix"></div>
@@ -122,34 +157,11 @@
             </table>
         </div>
     </div>
+  </div>
 </div>
 
-<div class="row">
-    <div class="x_panel tile">
-        <div class="x_title">
-            <h2>Next Available Topics</h2>
-            <div class="clearfix"></div>
-        </div>
-        <div class="x_content">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Concept title</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @available_concepts.each do |ac| %>
-                      <tr>
-                          <td><%= ac.title %></td>
-                          <td><%= link_to 'Start Learning',"/learned_courses/#{@learned_course.id}/concepts/#{ac.id}/learn" , :Class=>'btn btn-primary'%></td>
-                      </tr>
-                    <% end %>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+
+
 
 
 <%= link_to 'Back', learned_courses_path %>

@@ -1,42 +1,52 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Question type:</strong>
-  <%= @question.question_type %>
-</p>
+<div class = 'col-md-6 col-xs-6'>
+  <p>
+    <strong>Question type:</strong>
+    <%= Question.question_types.key(@question.question_type) %>
+  </p>
+</div>
+<div class = 'col-md-6 col-xs-6'>
+  <p>
+    <strong>Question string:</strong>
+    <%= @question.question_string %>
+  </p>
+</div>
+<div class = 'col-md-6 col-xs-6'>
+  <p>
+    <strong>Average time:</strong>
+    <%= @question.average_time %>
+  </p>
+</div>
+<div class = 'col-md-6 col-xs-6'>
+  <p>
+    <strong>Difficulty level:</strong>
+    <%= @question.difficulty_level_id %>
+  </p>
+</div>
+<div class = 'col-md-6 col-xs-6'>
+  <p>
+    <strong>Assessment:</strong>
+    <%= Assessment.find(@question.assessment_id).title %>
+  </p>
+</div>
 
-<p>
-  <strong>Question string:</strong>
-  <%= @question.question_string %>
-</p>
-
-<p>
-  <strong>Average time:</strong>
-  <%= @question.average_time %>
-</p>
-
-<p>
-  <strong>Difficulty level:</strong>
-  <%= @question.difficulty_level_id %>
-</p>
-
-<p>
-  <strong>Assessment:</strong>
-  <%= @question.assessment_id %>
-</p>
-
-<p>
-  <strong>Target concept:</strong>
-  <%= @question.target_concept %>
-</p>
-
-<p>
-  <strong>Answer:</strong>
-  <%= @question.answer %>
-</p>
-
-<%= link_to 'Edit', edit_question_path(@question) %> |
-<%= link_to 'Back',  edit_concept_path(@question.target_concept) %>
+<div class = 'col-md-6 col-xs-6'>
+  <p>
+    <strong>Target concept:</strong>
+    <%= @question.target_concept %>
+  </p>
+</div>
+<div class = 'col-md-6 col-xs-6'>
+  <p>
+    <strong>Answer:</strong>
+    <%= @question.answer %>
+  </p>
+</div>
+<div class='pull-right form-horizontal'>
+  <%= link_to 'Edit', edit_question_path(@question) %> |
+  <%= link_to 'Back',  edit_concept_path(@question.target_concept) %>
+</div>
 
 <div class="x_panel">
     <div class="x_title">

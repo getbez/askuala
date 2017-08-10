@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
-
+<p>
+  <strong>Level:</strong>
+  <%= @assessment.title %>
+</p>
 <p>
   <strong>Level:</strong>
   <%= @assessment.level %>
@@ -28,7 +31,7 @@
                   <th>Question</th>
                   <th>Question Type</th>
                   <th>Difficuty Level</th>
-                  <th>Average Time</th>
+                  <th>Average Time(in Mins)</th>
                   <th colspan="3">Actions</th>
               </tr>
           </thead>

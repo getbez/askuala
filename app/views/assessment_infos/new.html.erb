@@ -1,0 +1,33 @@
+<%= form_for @assessment_info do |f|%>
+<h2><%= @assessment.title %></h2>
+
+  <%=f.number_field :assessment_id, :hidden => true%>
+  <%=f.number_field :learned_concept_id, :hidden => true, :value => @assessment.concept_id%>
+  <%= f.fields_for :student_answers do |ff| %>
+
+    <% count  = 1 %>
+
+
+    <% @assessment.questions.each do |question| %>
+            <input type='hidden' name= 'assessment_info[student_answers][][question_id]' value="<%= question.id %>"></input>
+                <div class = 'x_panel'>
+                  <div>
+                      <b><%="Question "+count.to_s+": "%></b> <%=question.question_string %>
+                  </div>
+                <% if question.question_type == Question.question_types[:multi_choice] %>
+
+                   <%question.choices.each do |choice|%>
+                    <input type="radio" name="assessment_info[student_answers][][answer_choice_id]" value=<%=choice.id%> > <%=choice.content%>
+                    <br/>
+                   <%end%>
+
+                <% else %>
+                    <input type="text" name= 'assessment_info[student_answers][][answer_text]'>
+                <% end %>
+                </div>
+             <% count = count + 1 %>
+      <% end %>
+
+  <% end %>
+  <%= f.submit 'Submit', :class => 'btn btn-primary' %>
+<% end %>

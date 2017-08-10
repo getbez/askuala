@@ -5,4 +5,5 @@ class Assessment < ApplicationRecord
         advanced: 3
     }
     has_many :questions
+    belongs_to :concepts
 end
