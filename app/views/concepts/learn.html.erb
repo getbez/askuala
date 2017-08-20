@@ -15,12 +15,12 @@
 
 <div class="row hidden">
     <%= f.number_field :learned_course_id %>
-  
+
       <%= f.number_field :concept_id %>
       <%= f.number_field :resource_id %>
        <%= f.text_field :start_time %>
        <%= f.text_field :end_time %>
-       <%= f.text_field :completed%>
+       <%= f.text_field :completed ,:value=>false%>
 </div>
   <div class="row">
     <% cr = ConceptResource.find(@learned_concept.resource_id) %>
@@ -38,4 +38,3 @@
 
 <%end%>
 <%= link_to 'Back' %>
-

@@ -1,0 +1,18 @@
+<div class="row">
+    <p id="notice"><%= notice %></p>
+
+    <p>
+        <strong>Presentation Mode:</strong>
+        <%= @preference.presentation_mode %>
+    </p>
+
+    <p>
+        <strong>Resource Type:</strong>
+        <%= @preference.resource_type %>
+    </p>
+
+</div>
+
+
+<%= link_to 'Edit', edit_preference_path(@preference) %>
+<%= link_to 'Back', :back %>

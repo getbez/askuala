@@ -69,10 +69,12 @@ class LearnedCoursesController < ApplicationController
 
     availables=[]
     if(@learned_course.learned_concepts.empty?)
-      availables << Concept.find_by(course_id: @learned_course.course_id,level: 1)
-      logger.debug "**************availables: #{availables.to_json}"
+      if Concept.find_by(course_id: @learned_course.course_id)
+        availables << Concept.find_by(course_id: @learned_course.course_id)
+        logger.debug "**************availables: #{availables.to_json}"
+      end
     else
-      completed_concept_ids = @learned_course.learned_concepts.where(completed: true)
+      completed_concept_ids =  @learned_course.learned_concepts.where(completed: true).collect(&:concept_id)
       all_concepts=Concept.where(:course_id => @learned_course.course_id)
       learned_concepts = Concept.where(:id => completed_concept_ids)
 =begin
@@ -88,7 +90,10 @@ class LearnedCoursesController < ApplicationController
       logger.debug "**************learned_concept_ids: #{completed_concept_ids}"
       logger.debug "**************learned: #{learned_concepts.to_json}"
       logger.debug "**************remain #{remaining_concepts.to_json}"
-      current_concept=Concept.find(@learned_course.current_concept)
+
+
+      #  current_concept=Concept.find(@learned_course.current_concept)
+
       # if not LearnedConcept.find_by(concept_id: current_concept.id).completed
       #   availables << current_concept
       # end

@@ -97,7 +97,7 @@
   <div class="col-md-6 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
-            <h2>Assessments Due</h2>
+            <h2>Assessments </h2>
             <div class="clearfix"></div>
         </div>
         <% @assessments_due = Assessment.where(concept_id: @available_concepts.collect(&:id))%>
@@ -115,12 +115,7 @@
                       <tr>
                           <td><%= Concept.find(ad.concept_id).title %></td>
                           <td><%= ad.level %></td>
-                          <% if LearnedConcept.find_by(concept_id: ad.concept_id).completed%>
-                            <td>Passed Result: <%=AssessmentInfo.where(assessment_id: ad.id).last.result %></td>
-                          <% else %>
-                            <td><%=link_to 'Take Assessment' , new_assessment_info_path(assessment_id: ad.id), class: 'btn btn-primary'%></td>
-                          <% end %>
-
+                              <td><%=link_to 'Take Assessment' , new_assessment_info_path(assessment_id: ad.id), class: 'btn btn-primary'%></td>
                       </tr>
                     <% end %>
                 </tbody>
@@ -140,16 +135,16 @@
                     <tr>
                         <th>Concept title</th>
                         <th>Assessment Level</th>
-                        <th>Time taken</th>
                         <th>Result</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% @learned_course.assessment_infos.each do |ai| %>
+                  <% @assessments_taken =  AssessmentInfo.where(student_user_id: current_user.id)%>
+
+                    <%  @assessments_taken.each do |ai| %>
                       <tr>
-                          <td><%= Concept.find(ai.concept_id).title %></td>
+                          <td><%= Concept.find(ai.assessment.concept_id).title %></td>
                           <td><%= ai.assessment.level %></td>
-                          <td><%= ai.end_time - ai.start_time %></td>
                           <td><%= ai.result %></td>
                       </tr>
                     <% end %>
@@ -164,4 +159,4 @@
 
 
 
-<%= link_to 'Back', learned_courses_path %>
+<%= link_to 'Back', courses_path %>

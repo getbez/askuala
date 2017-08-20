@@ -77,7 +77,12 @@ def create
       @assessment_info.result = correct_count.to_d/@assessment_info.student_answers.count*100
       #if result less than passing grade set the concept as incomplete
       @learned_concept = LearnedConcept.find_by(concept_id: @assessment_info.assessment.concept_id)
+      if !@learned_concept
 
+        @learned_concept = LearnedConcept.new
+        @learned_concept.concept_id  =  @assessment_info.assessment.concept.id
+        @learned_concept.learned_course_id = @assessment_info.assessment.concept.course_id
+      end
       if @assessment_info.result < @assessment_info.assessment.min_passing_grade
         @learned_concept.completed = false
       else

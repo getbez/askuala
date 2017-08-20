@@ -24,7 +24,7 @@
   </div>
   <div class="field">
       <%= f.label "Prerequisites" %><br />
-      <%= f.collection_check_boxes :prerequisite_ids, Concept.all, :id, :title do |con| %>
+      <%= f.collection_check_boxes :prerequisite_ids, Concept.where(course_id:@concept.course_id), :id, :title do |con| %>
         <div class="collection-check-box">
             <%= con.check_box %>
             <%= con.label %>
