@@ -16,7 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem "font-awesome-rails"
 
-gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
