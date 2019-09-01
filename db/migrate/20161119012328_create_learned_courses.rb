@@ -1,4 +1,4 @@
-class CreateLearnedCourses < ActiveRecord::Migration
+class CreateLearnedCourses < ActiveRecord::Migration[6.0]
   def change
     create_table :learned_courses do |t|
       t.float  :completion_level, null: false

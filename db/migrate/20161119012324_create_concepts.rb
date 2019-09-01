@@ -1,4 +1,4 @@
-class CreateConcepts < ActiveRecord::Migration
+class CreateConcepts < ActiveRecord::Migration[6.0]
   def change
     create_table :concepts do |t|
       t.integer  :level , null: false

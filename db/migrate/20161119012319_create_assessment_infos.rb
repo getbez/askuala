@@ -1,4 +1,4 @@
-class CreateAssessmentInfos < ActiveRecord::Migration
+class CreateAssessmentInfos < ActiveRecord::Migration[6.0]
  def change
    create_table :assessment_infos do |t|
      t.datetime :end_time

@@ -1,4 +1,4 @@
-class CreateLearnedConcepts < ActiveRecord::Migration
+class CreateLearnedConcepts < ActiveRecord::Migration[6.0]
   def change
     create_table  :learned_concepts do |t|
       t.integer   :learned_course_id

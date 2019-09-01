@@ -1,4 +1,4 @@
-class CreateQuestionAnswers < ActiveRecord::Migration
+class CreateQuestionAnswers < ActiveRecord::Migration[6.0]
   def change
     create_table  :question_answers do |t|
       t.integer  :choice_id

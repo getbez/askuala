@@ -1,4 +1,4 @@
-class CreateConceptResources < ActiveRecord::Migration
+class CreateConceptResources < ActiveRecord::Migration[6.0]
   def change
     create_table  :concept_resources do |t|
 

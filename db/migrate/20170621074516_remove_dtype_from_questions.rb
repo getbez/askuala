@@ -1,4 +1,4 @@
-class RemoveDtypeFromQuestions < ActiveRecord::Migration[5.0]
+class RemoveDtypeFromQuestions < ActiveRecord::Migration[6.0]
   def change
     remove_column :questions, :DTYPE
     remove_column :questions, :target_concept

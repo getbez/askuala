@@ -1,4 +1,4 @@
-class CreateLearnerPreferences < ActiveRecord::Migration[5.0]
+class CreateLearnerPreferences < ActiveRecord::Migration[6.0]
   def change
     create_table :learner_preferences do |t|
       t.integer :student_id

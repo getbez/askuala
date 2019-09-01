@@ -1,4 +1,4 @@
-class CreateCourses < ActiveRecord::Migration
+class CreateCourses < ActiveRecord::Migration[6.0]
   def change
     create_table :courses do |t|
       t.float    :allowed_time_gap, null: false
