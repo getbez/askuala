@@ -230,7 +230,6 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  bcrypt
   better_errors
   bootstrap-sass
   byebug

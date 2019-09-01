@@ -1,13 +1,9 @@
-ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
-
-require 'bundler/setup' # Set up gems listed in the Gemfile.
-
-require 'rails/commands/server'
-
-module DefaultOptions
-  def default_options
-    super.merge!(Port: 3001)
-  end
+#!/usr/bin/env ruby
+begin
+  load File.expand_path('../spring', __FILE__)
+rescue LoadError => e
+  raise unless e.message.include?('spring')
 end
+APP_PATH = File.expand_path('../../config/application', __FILE__)
 
-Rails::Server.send(:prepend, DefaultOptions)
+require 'rails/commands'

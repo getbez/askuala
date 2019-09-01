@@ -17,9 +17,9 @@ development:
   #database: learnjava
   #username: root
   #password: mysqlAdmin
-  database: askuala_new
-  username: askuala
-  password: askuala
+  database: askuala
+  username: beza
+  password: beza
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -55,9 +55,9 @@ test:
   #database: learnjava_test
   #username: root
   #password: mysqlAdmin
-  database: askuala_new
-  username: askuala
-  password: askuala
+  database: askuala_test
+  username: beza
+  password: beza
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
@@ -90,7 +90,7 @@ production:
   #database: learnjava_production
   #username: root
   #password: mysqlAdmin
-  database: askuala_new
+  database: askuala
   username: askuala
   password: askuala
   # The specified database role being used to connect to postgres.
